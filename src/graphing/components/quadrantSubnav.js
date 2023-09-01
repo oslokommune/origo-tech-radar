@@ -46,11 +46,11 @@ function renderQuadrantSubnav(radarHeader, quadrants, renderFullRadar) {
     .append('div')
     .classed('quadrant-subnav__dropdown', true)
     .attr('aria-expanded', 'false')
-  subnavDropdown.append('span').classed('quadrant-subnav__dropdown-selector', true).text('All quadrants')
+  subnavDropdown.append('span').classed('quadrant-subnav__dropdown-selector', true).text('Alle kvadranter')
   const subnavArrow = subnavDropdown.append('span').classed('quadrant-subnav__dropdown-arrow', true)
 
   const quadrantList = subnavContainer.append('ul').classed('quadrant-subnav__list', true)
-  addListItem(quadrantList, 'All quadrants', renderFullRadar)
+  addListItem(quadrantList, 'Alle kvadranter', renderFullRadar)
   d3.select('li.quadrant-subnav__list-item').classed('active-item', true).select('button').attr('aria-selected', 'true')
 
   subnavDropdown.on('click', function () {
