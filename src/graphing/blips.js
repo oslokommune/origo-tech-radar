@@ -317,7 +317,8 @@ const transposeQuadrantCoords = function (coords, blipWidth) {
 }
 
 function createGroupBlip(blipsInRing, blipType, ring, quadrantOrder) {
-  const blipText = `${blipsInRing.length} ${blipType} blips`
+  const blipTypeText = blipsInRing[0].isNew() ? 'nye' : 'eksisterende'
+  const blipText = `${blipsInRing.length} ${blipTypeText}`
   const blipId = `${quadrantOrder}-${replaceSpaceWithHyphens(ring.name())}-group-${replaceSpaceWithHyphens(
     blipType,
   )}-blips`
