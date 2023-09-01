@@ -21,6 +21,7 @@
 @if $UIRefresh2022 {
   footer {
     margin-bottom: 40px;
+    text-align: center;
 
     p {
       @include eight-column-layout-margin;
