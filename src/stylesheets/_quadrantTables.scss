@@ -107,6 +107,7 @@
           font-size: 1rem;
           font-family: $baseFontFamily;
           line-height: 36px;
+          white-space: pre-wrap;
 
           @include media-query-large {
             font-size: 1.125rem;
