@@ -63,11 +63,22 @@ function renderBlipDescription(blip, ring, quadrant, tip, groupBlipTooltipText) 
       .text(`${blip.blipText()}. ${blip.name()}`)
     blipItemContainer.append('span').classed('blip-list__item-container__name-arrow', true)
 
-    blipItemDiv
+    const descriptionDiv = blipItemDiv
       .append('div')
       .classed('blip-list__item-container__description', true)
       .attr('id', `blip-description-${blip.id()}`)
-      .html(blip.description())
+    descriptionDiv
+      .append('div')
+      .html('<strong>Beskrivelse</strong><br/>' + blip.description())
+    descriptionDiv
+      .append('div')
+      .html('<strong>Fordeler</strong><br/>' + blip.pros())
+    descriptionDiv
+      .append('div')
+      .html('<strong>Ulemper</strong><br/>' + blip.cons())
+    descriptionDiv
+      .append('div')
+      .html('<strong>Brukt av</strong><br/>' + blip.usedBy())
   }
   const blipGraphItem = d3.select(`g a#blip-link-${removeAllSpaces(blip.id())}`)
   const mouseOver = function (e) {
