@@ -409,7 +409,7 @@ function renderRadarLegends(radarElement) {
     .attr('alt', 'existing blip legend icon')
     .node().outerHTML
 
-  legendsContainer.html(`${newImage} New ${existingImage} Existing`)
+  legendsContainer.html(`${newImage} Ny ${existingImage} Eksisterende`)
 }
 
 function renderMobileView(quadrant) {
