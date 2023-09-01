@@ -9,7 +9,7 @@ function renderSearch(radarHeader, quadrants) {
   searchContainer
     .append('input')
     .classed('search-container__input', true)
-    .attr('placeholder', 'Search this radar')
+    .attr('placeholder', 'Søk')
     .attr('id', 'auto-complete')
 
   AutoComplete('#auto-complete', quadrants, function (e, ui) {
