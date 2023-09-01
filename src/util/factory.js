@@ -112,6 +112,9 @@ const plotRadarGraph = function (title, blips, currentRadarName, alternativeRada
         blip.isNew.toLowerCase() === 'true',
         blip.topic,
         blip.description,
+        blip.pros,
+        blip.cons,
+        blip.usedBy,
       )
       quadrants[currentQuadrant].add(blipObj)
     }
