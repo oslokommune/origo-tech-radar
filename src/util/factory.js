@@ -317,9 +317,12 @@ const Factory = function () {
     })
 
     const domainName = DomainName(window.location.search.substring(1))
-    const queryString = featureToggles.UIRefresh2022
+    let queryString = featureToggles.UIRefresh2022
       ? window.location.href.match(/documentId(.*)/)
       : window.location.href.match(/sheetId(.*)/)
+    if (queryString == null) {
+      queryString = ["documentId=" + config().defaultDocument]
+    }
     const queryParams = queryString ? QueryParams(queryString[0]) : {}
 
     const paramId = featureToggles.UIRefresh2022 ? queryParams.documentId : queryParams.sheetId
