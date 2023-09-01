@@ -533,7 +533,7 @@ const Radar = function (size, radar) {
     d3.select('li.quadrant-subnav__list-item.active-item').classed('active-item', false)
     d3.select('li.quadrant-subnav__list-item').classed('active-item', true)
 
-    d3.select('.quadrant-subnav__dropdown-selector').text('All quadrants')
+    d3.select('.quadrant-subnav__dropdown-selector').text('Alle kvadranter')
 
     d3tip()
       .attr('class', 'd3-tip')
