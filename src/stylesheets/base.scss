@@ -102,8 +102,8 @@
         border-color: $link-normal;
 
         &:hover {
-          color: $link-hover;
-          border-color: $link-hover;
+          color: $ok-blue-hover;
+          border-color: $ok-blue-hover;
         }
       }
     }
@@ -117,7 +117,7 @@
       font-size: 12px;
       display: block;
       padding: 12px;
-      background: $wave;
+      background: $ok-blue-dark;
       color: $white;
       pointer-events: none;
       z-index: 20;
