@@ -42,12 +42,12 @@
 
       &:hover,
       &.highlight {
-        background-color: $mist;
+        background-color: $ok-gray;
       }
 
       &-container {
         &.expand {
-          background-color: $mist;
+          background-color: $ok-gray;
         }
 
         &.expand &__name {
@@ -95,7 +95,7 @@
             height: 8px;
             display: inline-flex;
             rotate: 45deg;
-            border: 1px solid $flamingo;
+            border: 1px solid $ok-blue-dark;
             border-width: 0 2px 2px 0;
             -webkit-transition: all 0.2s ease;
             transition: all 0.2s ease;
