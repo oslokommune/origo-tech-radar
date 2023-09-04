@@ -31,18 +31,18 @@
 .loader-wrapper div {
   width: 30px;
   height: 30px;
-  background: $mist;
+  background: $ok-gray;
   animation: loader 1s linear infinite;
 }
 
 @keyframes loader {
   0% {
-    background: $wave;
+    background: $ok-blue-dark;
   }
   50% {
-    background: $mist;
+    background: $ok-gray;
   }
   100% {
-    background: $mist;
+    background: $ok-gray;
   }
 }
