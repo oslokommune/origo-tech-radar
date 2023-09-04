@@ -290,7 +290,7 @@ function renderRadarQuadrantName(quadrant, parentGroup, tip) {
     .append('polygon')
     .attr('class', 'quadrant-name-cta')
     .attr('points', '5.2105e-4 11.753 1.2874 13 8 6.505 1.2879 0 0 1.2461 5.4253 6.504')
-    .attr('fill', '#e16a7c')
+    .attr('fill', '#2a2859')
   quadrantName.text(quadrantNameToDisplay).attr('font-weight', 'bold')
 
   wrapQuadrantNameInMultiLine(quadrantName, adjustY < 0, quadrantNameGroup, tip)
@@ -349,7 +349,7 @@ function renderRadarQuadrants(size, svg, quadrant, rings, ringCalculator, tip) {
     .append('rect')
     .attr('width', `${quadrantWidth}px`)
     .attr('height', `${quadrantHeight}px`)
-    .attr('fill', '#edf1f3')
+    .attr('fill', '#f2f2f2')
     .attr('x', rectCoordMap[quadrant.order].x)
     .attr('y', rectCoordMap[quadrant.order].y)
     .style('pointer-events', 'none')

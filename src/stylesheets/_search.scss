@@ -63,10 +63,10 @@
     }
 
     &__input {
-      color: $wave;
+      color: $ok-blue-dark;
       height: 48px;
       margin-bottom: 30px;
-      background: #edf1f3 url(images/search-active-wave.svg) no-repeat 98% center;
+      background: $ok-gray url(images/search-active-wave.svg) no-repeat 98% center;
       font-family: $baseFontFamily;
       scroll-margin-top: $subnavHeight;
 

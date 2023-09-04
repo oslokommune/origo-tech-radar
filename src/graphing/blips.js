@@ -186,7 +186,7 @@ function drawBlipInCoordinates(blip, coordinates, order, quadrantGroup) {
     .style('font-size', '12px')
     .attr('font-style', 'normal')
     .attr('font-weight', 'bold')
-    .attr('fill', 'white')
+    .attr('fill', '#2a2859')
     .text(blip.blipText())
     .style('text-anchor', 'middle')
     .style('transform', `scale(${blip.scale || 1})`)
