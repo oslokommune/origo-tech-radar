@@ -156,22 +156,22 @@
     polygon,
     path {
       &.first {
-        fill: $green;
+        fill: $ok-green;
         stroke: none;
       }
 
       &.second {
-        fill: $blue;
+        fill: $ok-blue;
         stroke: none;
       }
 
       &.third {
-        fill: $orange;
+        fill: $ok-yellow;
         stroke: none;
       }
 
       &.fourth {
-        fill: $violet;
+        fill: $ok-red;
         stroke: none;
       }
     }
@@ -201,22 +201,22 @@
       rect,
       path {
         &.first {
-          fill: $sapphire;
+          fill: $ok-blue;
           stroke: none;
         }
 
         &.second {
-          fill: $turmeric;
+          fill: $ok-yellow;
           stroke: none;
         }
 
         &.third {
-          fill: $jade;
+          fill: $ok-green;
           stroke: none;
         }
 
         &.fourth {
-          fill: $flamingo;
+          fill: $ok-red;
           stroke: none;
         }
       }
@@ -448,7 +448,7 @@
       background-repeat: no-repeat;
       font-size: 16px;
       font-weight: bold;
-      color: white;
+      color: $ok-blue-dark;
       border: none;
 
       @include media-query-medium {
@@ -456,7 +456,7 @@
       }
 
       &::after {
-        content: url('/images/arrow-white-icon.svg');
+        content: url('/images/arrow-icon.svg');
         margin: 4px 4px 0;
       }
 
@@ -477,16 +477,16 @@
     }
 
     #first-quadrant-mobile {
-      background-color: $sapphire;
+      background-color: $ok-blue;
     }
     #second-quadrant-mobile {
-      background-color: $turmeric;
+      background-color: $ok-yellow;
     }
     #third-quadrant-mobile {
-      background-color: $jade;
+      background-color: $ok-green;
     }
     #fourth-quadrant-mobile {
-      background-color: $flamingo;
+      background-color: $ok-red;
     }
   }
 }

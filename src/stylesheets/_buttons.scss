@@ -44,7 +44,13 @@
     }
 
     &__wave-btn {
-      background-color: $wave;
+      background-color: $ok-blue-dark;
+
+      &:hover {
+        background-color: $ok-blue-hover;
+        text-decoration: underline;
+        text-underline-offset: 0.3em;
+      }
     }
 
     &__flamingo-btn {
