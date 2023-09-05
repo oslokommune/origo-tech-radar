@@ -18,7 +18,7 @@
     }
 
     .pdf-title {
-      font-family: 'Bitter', serif;
+      font-family: $baseFontFamily;
       font-size: 4rem;
       margin: 24mm 12mm;
       font-weight: bold;
@@ -33,6 +33,7 @@
       width: calc(100% - 24mm);
     }
   }
+
   .pdf-powered-by-text {
     float: right;
     margin-right: 12mm;
@@ -135,7 +136,7 @@
       &__name {
         font-size: 2rem;
         font-weight: bold;
-        font-family: 'Bitter', serif;
+        font-family: $baseFontFamily;
         margin-bottom: 2.5rem;
         display: block !important;
       }
@@ -197,7 +198,7 @@
         }
       }
 
-      & > ul.blip-list:last-child {
+      &>ul.blip-list:last-child {
         margin-bottom: 0 !important;
       }
     }
@@ -214,8 +215,8 @@
 
   .input-sheet__logo,
   .hero-banner,
-  main > *:not(#pdf-cover-page, #radar),
-  #radar > #radar-plot,
+  main>*:not(#pdf-cover-page, #radar),
+  #radar>#radar-plot,
   .radar-legends,
   .ui-helper-hidden-accessible,
   #onetrust-consent-sdk {
@@ -246,6 +247,7 @@
 }
 
 @media screen {
+
   .pdf-footer,
   .pdf-page-footer,
   #pdf-cover-page {

@@ -15,6 +15,7 @@
   .loader-text {
     display: none;
     text-align: center;
+
     &__title {
       display: inline-block;
       font-size: 2.5rem;
@@ -72,10 +73,12 @@
       margin-bottom: 18px;
       border: none;
       cursor: pointer;
+
       &:focus {
         outline: auto;
       }
     }
+
     input:disabled {
       cursor: not-allowed;
       opacity: 0.9;
