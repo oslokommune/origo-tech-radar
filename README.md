@@ -83,7 +83,7 @@ Hvis man ønsker backup av kjørende radar før man oppgraderer, kan man laste n
 
 1. `export AWS_PROFILE=` - med riktig SSO-konto
 2. `aws sso login` - logg inn på AWS-konto `teknologi-dev`
-3. `rm -r ./dist && npm run build:prod && cp -r data dist && aws s3 sync ./dist s3://teknologiradar-origo-dev/ --delete`
+3. `./build-deploy-dev.sh`
 
 Applikasjon med lokale data:\
 http://teknologiradar-origo-dev.s3-website-eu-west-1.amazonaws.com/
@@ -92,7 +92,7 @@ http://teknologiradar-origo-dev.s3-website-eu-west-1.amazonaws.com/
 
 1. `export AWS_PROFILE=` - med riktig SSO-konto
 2. `aws sso login` - logg inn på AWS-konto `teknologi-prod`
-3. `rm -r ./dist && npm run build:prod && cp -r data dist && aws s3 sync ./dist s3://teknologiradar-origo/ --delete`
+3. `./build-deploy-prod.sh`
 
 Applikasjon med lokale data:\
 https://developer.oslo.kommune.no/teknologiradar/
