@@ -5,7 +5,7 @@
   .hero-banner {
     height: $tabletBannerHeight;
     background-color: $ok-blue-dark;
-    background-image: url('/images/OK-banner-image-mobile.svg');
+    background-image: url('./images/OK-banner-image-mobile.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left;
@@ -15,11 +15,11 @@
     margin: 0 !important;
 
     @include media-query-large {
-      background-image: url('/images/OK-banner-image-mobile.svg');
+      background-image: url('./images/OK-banner-image-mobile.svg');
     }
 
     @include media-query-xlarge {
-      background-image: url('/images/OK-banner-image-desktop.svg');
+      background-image: url('./images/OK-banner-image-desktop.svg');
       height: $bannerHeight;
       background-size: fit;
     }
