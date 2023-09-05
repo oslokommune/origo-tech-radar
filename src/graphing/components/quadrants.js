@@ -395,7 +395,7 @@ function renderRadarLegends(radarElement, hasMovements) {
 
   const newImage = legendsContainer
     .append('img')
-    .attr('src', '/images/new.svg')
+    .attr('src', './images/new.svg')
     .attr('width', '37px')
     .attr('height', '37px')
     .attr('alt', 'new blip legend icon')
@@ -411,7 +411,7 @@ function renderRadarLegends(radarElement, hasMovements) {
 
   const existingImage = legendsContainer
     .append('img')
-    .attr('src', '/images/existing.svg')
+    .attr('src', './images/existing.svg')
     .attr('width', '37px')
     .attr('height', '37px')
     .attr('alt', 'existing blip legend icon')
@@ -436,7 +436,7 @@ function renderMobileView(quadrant) {
   const quadrantBtn = d3.select('.all-quadrants-mobile').append('button')
   quadrantBtn
     .attr('class', 'all-quadrants-mobile--btn')
-    .style('background-image', `url('/images/${quadrant.order}-quadrant-btn-bg.svg')`)
+    .style('background-image', `url('./images/${quadrant.order}-quadrant-btn-bg.svg')`)
     .attr('id', quadrant.order + '-quadrant-mobile')
     .append('div')
     .attr('class', 'btn-text-wrapper')
