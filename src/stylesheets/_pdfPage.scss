@@ -18,7 +18,7 @@
     }
 
     .pdf-title {
-      font-family: 'Bitter', serif;
+      font-family: $baseFontFamily;
       font-size: 4rem;
       margin: 24mm 12mm;
       font-weight: bold;
@@ -135,7 +135,7 @@
       &__name {
         font-size: 2rem;
         font-weight: bold;
-        font-family: 'Bitter', serif;
+        font-family: $baseFontFamily;
         margin-bottom: 2.5rem;
         display: block !important;
       }
