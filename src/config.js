@@ -4,7 +4,7 @@ const config = () => {
       featureToggles: {
         UIRefresh2022: true,
       },
-      defaultDocument: '/data/radar.csv',
+      defaultDocument: '/teknologiradar/data/radar.csv',
     },
     development: {
       featureToggles: {
