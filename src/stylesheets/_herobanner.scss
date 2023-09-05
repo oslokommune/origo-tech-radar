@@ -5,28 +5,37 @@
   .hero-banner {
     height: $tabletBannerHeight;
     background-color: $ok-blue-dark;
-    background-image: url('/images/banner-image-mobile.jpg');
+    background-image: url('/images/OK-banner-image-mobile.svg');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: left;
     color: $white;
     display: flex;
     align-items: center;
     margin: 0 !important;
 
     @include media-query-large {
-      background-image: url('/images/banner-image-mobile.jpg');
+      background-image: url('/images/OK-banner-image-mobile.svg');
     }
 
     @include media-query-xlarge {
-      background-image: url('/images/banner-image-desktop.jpg');
+      background-image: url('/images/OK-banner-image-desktop.svg');
       height: $bannerHeight;
-      background-size: cover;
+      background-size: fit;
     }
 
     &__wrapper {
       margin: auto;
+      padding-top: 50px;
       width: 90%;
+
+      @include media-query-large {
+        padding-top: 50px;
+      }
+
+      @include media-query-xlarge {
+        padding-top: 0;
+      }
 
       @include layout-margin(1, $screen-small);
       @include layout-margin(1, $screen-medium);
