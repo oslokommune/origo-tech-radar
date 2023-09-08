@@ -8,13 +8,22 @@ https://github.com/thoughtworks/build-your-own-radar
 Routing til radaren er konfigurert i AWS-kontoen "dataplatform-prod", hvor en API Gateway bruker en reverse-proxy mot
 url-en til S3-siten.
 
-Direkte-url til S3-site:
-
+Direkte-url til S3-site:\
 http://teknologiradar-origo.s3-website-eu-west-1.amazonaws.com/
 
-Url via API Gateway:
-
+Url via API Gateway:\
 https://developer.oslo.kommune.no/teknologiradar
+
+### Nyttige Git-kommandoer
+
+Hvis endringene blir for store fra Thoughtworks, har vi valgt å tilpasse til Origo fra scratch. Da får vi en branch
+som skal overskrive `master`. En slik branch kan merges med master med følgende kommando:
+
+    git merge -s ours master
+
+En måte å prøve og få våre endringer på toppen av nyeste Thoughtworks-master, kan være:
+
+    git rebase -Xours thoughtworks/main
 
 ### Oppdatering av innhold
 
@@ -26,19 +35,44 @@ Kildedata for radaren finnes i Google Sheet med navn "teknologiradar".
 4. Legg CSV-fila i `data`-mappa i dette prosjektet.
 5. Oppdater fil som skal benyttes i `src/config.js`.
 
-### Bygging av prosjekt
+### Bygging av prosjekt og kjøring lokalt
 
-1. `npm install`
-2. `npm run build` - bygge prosjektet til `./dist`
-3. `npm run dev` - kjøre prosjektet lokalt
+Prosjektet bygger i `./dist` og kopierer denne til s3-bøtte `teknologiradar-origo` / `teknologiradar-origo-dev`.
 
-### Deployment av ny versjon
+Bygge prosjekt:
 
-1. `aws sso login` og logg inn på AWS-konto `teknologi-prod`
-2. Husk `export AWS_PROFILE=` med din lokale SSO-konto
-3. `npm run deploy`
+1. `npm install` - installere avhengigheter
+2. `npm run quality` - kjøre linting og tester
+3. `npm test` - kjøre tester
 
-Prosjektet bygger i `./dist` og kopierer denne til s3-bøtte `teknologiradar-origo`.
+Vi må initiere følgende for vårt oppsett:
 
-OBS 1: Krever [aws-cli](https://aws.amazon.com/cli/) \
-OBS 2: Opplasting skjer med sync-operasjon og sletter derfor filer som finnes i s3-bøtta fra før, men ikke i ny dist-mappe.
+    export RINGS='["BRUK", "VURDER", "AVSTÅ"]'
+    export QUADRANTS='["Programmering", "Devops", "Plattform", "Sikkerhet"]'
+
+### Kjøring lokalt
+
+`npm run dev` - kjøre applikasjonen på localhost:8080
+
+Vi har lagt inn default `documentId=config().defaultDocument`, men det må overstyres lokalt.
+
+Applikasjon med data fra GitHub:\
+http://localhost:8080/?documentId=https%3A%2F%2Fraw.githubusercontent.com%2Foslokommune%2Forigo-tech-radar%2Fmaster%2Fdata%2Fradar.csv
+
+### Deployment til DEV
+
+1. `export AWS_PROFILE=` - med riktig SSO-konto
+2. `aws sso login` - logg inn på AWS-konto `teknologi-dev`
+3. `./build-deploy-dev.sh`
+
+Applikasjon med lokale data:\
+http://teknologiradar-origo-dev.s3-website-eu-west-1.amazonaws.com/
+
+### Deployment til PROD
+
+1. `export AWS_PROFILE=` - med riktig SSO-konto
+2. `aws sso login` - logg inn på AWS-konto `teknologi-prod`
+3. `./build-deploy-prod.sh`
+
+Applikasjon med lokale data:\
+https://developer.oslo.kommune.no/teknologiradar/

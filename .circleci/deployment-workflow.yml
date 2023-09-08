@@ -6,7 +6,7 @@ orbs:
 executors:
   base:
     docker:
-      - image: cimg/node:14.19
+      - image: cimg/node:18.12.1
         user: root
 
 commands:
@@ -43,10 +43,16 @@ commands:
   build-and-push:
     description: Build and push code to S3 bucket
     parameters:
+      api_key:
+        type: string
+        default: ''
       client_id:
         type: string
         default: ''
       gtm_id:
+        type: string
+        default: ''
+      adobe_launch_script_url:
         type: string
         default: ''
       bucket_name:
@@ -55,14 +61,27 @@ commands:
       distribution_id:
         type: string
         default: ''
+      mode:
+        type: string
+        default: dev
     steps:
       - run:
           name: Build code
-          command: API_KEY="" CLIENT_ID=<< parameters.client_id >> GTM_ID=<< parameters.gtm_id >> npm run build
+          command: API_KEY=<< parameters.api_key >> CLIENT_ID=<< parameters.client_id >> GTM_ID=<< parameters.gtm_id >> ADOBE_LAUNCH_SCRIPT_URL=<< parameters.adobe_launch_script_url >> npm run build:<< parameters.mode >>
+      - when:
+          condition:
+            and:
+              - equal: [<< parameters.mode >>, 'prod']
+          steps:
+            - run:
+                name: Set PROD specific env variables
+                command: |
+                  echo 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD' >> $BASH_ENV
+                  echo 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD' >> $BASH_ENV
       - aws-cli/setup
       - run:
           name: Sync build artifacts to S3
-          command: aws s3 cp --recursive --acl public-read dist "s3://<< parameters.bucket_name >>/"
+          command: aws s3 cp --recursive dist "s3://<< parameters.bucket_name >>/"
       - run:
           name: Create invalidation in CloudFront
           command: aws cloudfront create-invalidation --distribution-id << parameters.distribution_id >> --paths '/*'
@@ -75,33 +94,33 @@ jobs:
       - install-node-and-cypress-packages
       - run:
           name: Run e2e test cases
-          command: ./run_e2e_tests.sh $DEV_API_KEY $TESTING_CLIENT_ID $DEV_TEST_URL
-  dev-deployment:
+          command: API_KEY=$LOCAL_API_KEY ./run_e2e_tests.sh $LOCAL_TEST_URL
+  qa-deployment:
     executor: base
     steps:
       - checkout
       - install-node-packages
       - build-and-push:
-          client_id: $DEV_CLIENT_ID
-          gtm_id: $DEV_GTM_ID
-          bucket_name: $DEV_BUCKET_NAME
-          distribution_id: $DEV_DISTRIBUTION_ID
+          api_key: $QA_API_KEY
+          client_id: $QA_CLIENT_ID
+          gtm_id: $QA_GTM_ID
+          adobe_launch_script_url: $QA_ADOBE_LAUNCH_SCRIPT_URL
+          bucket_name: $QA_BUCKET_NAME
+          distribution_id: $QA_DISTRIBUTION_ID
+          mode: dev
   prod-deployment:
     executor: base
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.12
-          docker_layer_caching: true
       - install-node-packages
       - build-and-push:
+          api_key: $PROD_API_KEY
           client_id: $PROD_CLIENT_ID
           gtm_id: $PROD_GTM_ID
+          adobe_launch_script_url: $PROD_ADOBE_LAUNCH_SCRIPT_URL
           bucket_name: $PROD_BUCKET_NAME
           distribution_id: $PROD_DISTRIBUTION_ID
-      - run:
-          name: Build and push Docker image to DockerHub
-          command: ./docker_push.sh
+          mode: prod
 
 workflows:
   build-and-deploy:
@@ -110,17 +129,13 @@ workflows:
           filters:
             branches:
               only: master
-      - approve-dev-deployment:
-          type: approval
+      - qa-deployment:
           requires:
             - e2e-tests
-      - dev-deployment:
-          requires:
-            - approve-dev-deployment
       - approve-prod-deployment:
           type: approval
           requires:
-            - dev-deployment
+            - qa-deployment
       - prod-deployment:
           requires:
             - approve-prod-deployment

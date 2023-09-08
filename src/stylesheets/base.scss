@@ -5,389 +5,152 @@
 @import 'error';
 @import 'header';
 @import 'footer';
-@import url(https://www.thoughtworks.com/css/k8s_production/screen.css);
-@font-face {
-  font-family: 'Oslo sans';
-  src: url('./images/OsloSans-Regular.woff2') format('woff2');
-  font-weight: normal;
-}
-@font-face {
-  font-family: 'Oslo sans';
-  src: url('./images/OsloSans-Medium.woff2') format('woff2');
-  font-weight: medium;
-}
-@font-face {
-  font-family: 'Oslo sans';
-  src: url('./images/OsloSans-Light.woff2') format('woff2');
-  font-weight: light;
-}
-@font-face {
-  font-family: 'Oslo sans';
-  src: url('./images/OsloSans-Bold.woff2') format('woff2');
-  font-weight: bold;
+@import 'herobanner';
+@import 'quadrantsubnav';
+@import 'search';
+@import 'alternativeradars';
+@import 'buttons';
+@import 'quadrants';
+@import 'quadrantTables';
+@import 'mediaqueries';
+@import 'layout';
+@import 'landingpage';
+@import 'loader';
+@import 'screen';
+@import 'pdfPage';
+
+:root {
+  font-family: $baseFontFamily;
 }
 
-body {
-  font-family: Oslo sans, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  margin: 0;
-}
-
-@media print {
-  body,
-  article {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  @page {
-    margin: 2cm;
-  }
-
-  a:after {
-    content: ' <' attr(href) '> ';
-    font-size: 0.8em;
-    font-weight: normal;
-  }
-
-  #radar-plot {
-    display: none;
-  }
-
-  .quadrant-table {
-    .quadrant-table__name {
-      display: block;
-      font-size: 36pt;
-      padding: 0 10px;
-      margin-bottom: 20px;
-    }
-
-    &.first .quadrant-table__name {
-      color: $red;
-    }
-
-    &.second .quadrant-table__name {
-      color: $green;
-    }
-
-    &.third .quadrant-table__name {
-      color: $yellow;
-    }
-
-    &.fourth .quadrant-table__name {
-      color: $red-10;
-    }
-  }
-
-  .quadrant-table {
-    page-break-after: always;
-
-    ul {
-      list-style: circle;
-      padding: 0;
-      margin: 0;
-    }
-
-    li {
-      list-style: circle;
-      page-break-inside: avoid;
-    }
-
-    h3 {
-      page-break-before: always;
-      padding: 0 10px;
-      text-transform: uppercase;
-      font-size: 18pt;
-      font-weight: bold;
-    }
-
-    h2 + h3 {
-      page-break-before: avoid;
-    }
-  }
-
-  .blip-list-item {
-    font-weight: bold;
-  }
-
-  .blip-item-description {
-    padding: 0 15px;
-  }
-
-  header {
-    text-align: left;
-
-    .radar-title .radar-title__text {
-      font-size: 40px;
-      width: 100%;
-      padding: 10px;
-      display: block;
-    }
-
-    .radar-title .radar-title__logo {
-      display: block;
-      width: auto;
-
-      a {
-        padding: 40px 10px 0;
-        display: block;
-
-        &::after {
-          display: none;
-        }
-      }
-
-      img {
-        max-width: 150px;
-      }
-    }
-
-    .buttons-group {
-      display: none;
-    }
-
-    .home-link {
-      display: none;
-
-      &.selected {
-        display: none;
-      }
-    }
-
-    #alternative-buttons {
-      display: none;
-    }
-
-    .print-radar {
-      display: none;
-    }
-  }
-
-  #footer {
-    display: none;
-  }
-
-  .error-container {
-    display: none;
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: $baseFontFamily;
   }
 }
 
 @media screen {
-  #radar {
-    width: 80%;
-    margin: 0 auto;
-    position: relative;
-    color: $dark-blue;
+  body {
+    font: 18px 'Open Sans';
+    opacity: 0;
+    @if $UIRefresh2022 {
+      font-family: $baseFontFamily;
+      opacity: 1;
 
-    svg#radar-plot {
-      margin: 0 auto;
-      transition: all 1s ease;
-      position: absolute;
-      left: 0;
-      right: 0;
-
-      .legend {
-        visibility: hidden;
-        transition: visibility 1s ease 1s;
-        color: $black;
-      }
-
-      path {
-        &.ring-arc-3 {
-          stroke: none;
-          fill: $blue-dark-10;
-        }
-
-        &.ring-arc-2 {
-          stroke: none;
-          fill: $light-blue;
-        }
-
-        &.ring-arc-1 {
-          stroke: none;
-          fill: $blue;
-        }
-
-        &.ring-arc-0 {
-          stroke: none;
-          fill: $dark-blue;
-        }
-      }
-
-      .blip-link {
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      .quadrant-group {
-        cursor: pointer;
-      }
-
-      circle,
-      polygon,
-      path {
-        &.first {
-          fill: $red;
-          stroke: none;
-        }
-
-        &.second {
-          fill: $green;
-          stroke: none;
-        }
-
-        &.third {
-          fill: $yellow;
-          stroke: none;
-        }
-
-        &.fourth {
-          fill: $red-10;
-          stroke: none;
-        }
-      }
-
-      line {
-        stroke: white;
-      }
-
-      text {
-        &.blip-text {
-          font-size: 9px;
-          font-weight: bold;
-          fill: $black;
-        }
-
-        &.line-text {
-          font-weight: bold;
-          text-transform: uppercase;
-          fill: $dark-blue;
-          font-size: 14px;
-        }
-      }
-    }
-    .quadrant-table {
-      background-color: $grey-light;
-    }
-    div.quadrant-table {
-      .quadrant-table__name {
-        display: none;
-      }
-
-      max-height: 0;
-      max-width: 0;
-      position: absolute;
-      overflow: hidden;
-
-      transition: max-height 0.5s ease 1s;
-
-      h3 {
-        text-transform: uppercase;
+      h1 {
         font-size: 1.5rem;
-        margin: 0;
-        font-weight: bold;
-        margin: 10px;
-        color: $dark-blue;
-      }
+        font-family: $baseFontFamily;
+        text-transform: none;
+        letter-spacing: normal;
 
-      &.first {
-        &.selected {
-          float: right;
+        @include media-query-medium {
+          font-size: 2rem;
+        }
+
+        @include media-query-large {
+          font-size: 2.5rem;
+        }
+
+        @include media-query-xxlarge {
+          font-size: 3rem;
+        }
+
+        @include media-query-xxxlarge {
+          font-size: 3.5rem;
         }
       }
 
-      &.second {
-        &.selected {
-          float: left;
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 630;
+        font-family: 'Inter', serif;
+        text-transform: none;
+        letter-spacing: normal;
+
+        @include media-query-medium {
+          font-size: 1.25rem;
+        }
+
+        @include media-query-large {
+          font-size: 1.5rem;
+        }
+
+        @include media-query-xlarge {
+          font-size: 1.5rem;
+        }
+
+        @include media-query-xxlarge {
+          font-size: 2rem;
+        }
+
+        @include media-query-xxxlarge {
+          font-size: 2rem;
         }
       }
 
-      &.third {
-        &.selected {
-          float: left;
+      p {
+        font-size: 1rem;
+        font-family: $baseFontFamily;
+
+        @include media-query-xxlarge {
+          font-size: 1.125rem;
         }
       }
 
-      &.fourth {
-        &.selected {
-          float: right;
+      a {
+        color: $link-normal;
+        border-color: $link-normal;
+
+        &:hover {
+          color: $ok-blue-hover;
+          border-color: $ok-blue-hover;
         }
       }
+    }
 
-      &.selected {
-        z-index: 2;
-        position: relative;
-        max-height: 10000px;
-        max-width: 40%;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+
+  @if $UIRefresh2022 {
+    .d3-tip {
+      font-size: 12px;
+      display: block;
+      padding: 12px;
+      background: $ok-blue-dark;
+      color: $white;
+      pointer-events: none;
+      z-index: 20;
+      max-width: 170px;
+      word-wrap: break-word;
+      white-space: pre-line;
+      line-height: 2;
+      border-radius: unset;
+
+      @include media-query-medium {
+        max-width: 250px;
       }
+    }
 
-      ul {
-        padding: 0;
-        margin-left: 10px;
-        margin-right: 10px;
+    .d3-tip:after {
+      box-sizing: border-box;
+      font-size: 10px;
+      width: 100%;
+      color: $wave;
+      position: absolute;
+      pointer-events: none;
+    }
 
-        li {
-          list-style-type: none;
-          padding-left: 0;
+    .d3-tip.n {
+      margin: -10px 0 0;
+    }
 
-          .blip-list-item {
-            padding: 2px 5px;
-            border-radius: 2px;
-            cursor: pointer;
-            font-size: $baseFont;
-            font-weight: 500;
-          }
-
-          .blip-list-item:hover,
-          .blip-list-item:active,
-          .blip-list-item:focus {
-            color: $dark-blue;
-            border-bottom: $dark-blue 1px solid;
-            padding-bottom: 1px;
-            font-weight: bold;
-          }
-
-          ::-webkit-scrollbar {
-            width: 10px;
-          }
-
-          ::-webkit-scrollbar-track {
-            background: $grey-alpha-03;
-          }
-
-          ::-webkit-scrollbar-thumb {
-            background: $grey-dark;
-          }
-
-          .blip-item-description {
-            max-height: 0;
-            overflow-y: scroll;
-            width: 400px;
-            margin-bottom: 10px;
-            //background-color: #fef9f0;
-
-            p {
-              margin: 0;
-              padding: 10px;
-              color: $grey-text;
-              font-weight: 100;
-              font-size: 16px;
-            }
-            li {
-              list-style-type: disc;
-              list-style-position: inside;
-            }
-
-            transition: max-height 0.2s ease;
-
-            &.expanded {
-              transition: max-height 0.5s ease 0.2s;
-              max-height: 1000px;
-            }
-          }
-        }
-      }
+    .d3-tip.n:after {
+      content: '\25BC';
+      margin: -3px 0 0;
+      top: 100%;
+      left: 0;
+      text-align: center;
     }
   }
 }

@@ -2,9 +2,63 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Origo teknologiradar</title>
-    <link href="./images/favicon.ico" rel="icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/images/favicon.ico" rel="icon" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap" rel="stylesheet" />
   </head>
 
-  <body></body>
+  <body>
+    <div class="hero-banner">
+      <div class="hero-banner__wrapper">
+        <h1 class="hero-banner__title-text">Origo teknologiradar</h1>
+      </div>
+    </div>
+    <main>
+      <div id="pdf-cover-page">
+        <img class="pdf-banner-image" src="./images/OK-pdf_banner.png" alt="Pdf cover image" width="100%" height="300px" />
+        <h1 class="pdf-title"></h1>
+        <div class="pdf-powered-by-text">
+          <span>Powered by</span>
+          <a href="https://www.thoughtworks.com">
+            <img class="pdf-tw-logo" src="./images/tw-logo.png" alt="logo" />
+          </a>
+        </div>
+      </div>
+      <div class="helper-description home-page">
+        <p>
+        </p>
+        <span class="loader-text">
+          <span class="loader-text__title">Klargjør teknologiradaren</span>
+          <p>Det skal ikke ta lang tid...</p>
+          <div class="loader-wrapper">
+            <div style="animation-delay: 0s"></div>
+            <div style="animation-delay: 0.25s"></div>
+            <div style="animation-delay: 0.75s"></div>
+            <div style="animation-delay: 0.5s"></div>
+          </div>
+        </span>
+      </div>
+      <div id="error-container" class="error-container home-page"></div>
+      <div class="input-sheet-form home-page">
+      </div>
+      <div class="graph-header"></div>
+      <div id="radar">
+        <p class="no-blip-text">
+          There are no blips on this quadrant, please check your Google sheet/CSV/JSON file once.
+        </p>
+      </div>
+      <div class="all-quadrants-mobile show-all-quadrants-mobile"></div>
+      <div class="graph-footer"></div>
+    </main>
+    <footer class="home-page">
+      <p class="agree-terms">
+        Origos teknologiradar er basert på kildekode fra<br/>
+        <a href="https://www.thoughtworks.com">Thoughtworks Radar v1.1.2</a>
+      </p>
+    </footer>
+  </body>
 </html>

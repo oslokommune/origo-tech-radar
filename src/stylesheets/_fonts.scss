@@ -1,2 +1,11 @@
+@font-face {
+  font-display: swap;
+  font-family: Oslo Sans;
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://punkt-cdn.oslo.kommune.no/latest/fonts/OsloSans-Regular.woff2) format("woff2"), url(https://punkt-cdn.oslo.kommune.no/latest/fonts/OsloSans-Regular.woff) format("woff");
+}
+
 $baseFont: 17px;
-$baseWeight: 100;
+$baseWeight: 300;
+$baseFontFamily: 'Oslo Sans', arial, sans-serif;
