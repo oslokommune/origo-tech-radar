@@ -21,10 +21,6 @@ som skal overskrive `master`. En slik branch kan merges med master med følgende
 
     git merge -s ours master
 
-En måte å prøve og få våre endringer på toppen av nyeste Thoughtworks-master, kan være:
-
-    git rebase -Xours thoughtworks/main
-
 ### Oppdatering av innhold
 
 Kildedata for radaren finnes i Google Sheet med navn "teknologiradar".
