@@ -14,6 +14,17 @@ http://teknologiradar-origo.s3-website-eu-west-1.amazonaws.com/
 Url via API Gateway:\
 https://developer.oslo.kommune.no/teknologiradar
 
+### Nyttige Git-kommandoer
+
+Hvis endringene blir for store fra Thoughtworks, har vi valgt å tilpasse til Origo fra scratch. Da får vi en branch
+som skal overskrive `master`. En slik branch kan merges med master med følgende kommando:
+
+    git merge -s ours master
+
+En måte å prøve og få våre endringer på toppen av nyeste Thoughtworks-master, kan være:
+
+    git rebase -Xours thoughtworks/main
+
 ### Oppdatering av innhold
 
 Kildedata for radaren finnes i Google Sheet med navn "teknologiradar".
