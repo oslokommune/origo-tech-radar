@@ -4,11 +4,13 @@ const config = () => {
       featureToggles: {
         UIRefresh2022: true,
       },
+      defaultDocument: '/teknologiradar/data/radar.csv',
     },
     development: {
       featureToggles: {
         UIRefresh2022: true,
       },
+      defaultDocument: '/data/radar.csv',
     },
   }
   return process.env.ENVIRONMENT ? env[process.env.ENVIRONMENT] : env
