@@ -1,4 +1,5 @@
 const QueryParams = require('../util/queryParamProcessor')
+const config = require('../config')
 
 function constructSheetUrl(sheetName) {
   const noParamsUrl = window.location.href.substring(0, window.location.href.indexOf(window.location.search))
@@ -16,6 +17,9 @@ function constructSheetUrl(sheetName) {
 
 function getDocumentOrSheetId() {
   const queryParams = QueryParams(window.location.search.substring(1))
+  if (queryParams.documentId == null) {
+    queryParams['documentId'] = config().defaultDocument
+  }
   return queryParams.documentId ?? queryParams.sheetId
 }
 
